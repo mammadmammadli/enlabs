@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const port = 4300;
-const { Company, User } = require('./db');
+const { Company, User, Office, Tag } = require('./db');
 const { exception } = require('console');
 
 app.use(bodyParser.json());
@@ -14,8 +14,24 @@ app.get('/healthcheck', (req, res) => {
 })
 
 app.get('/users', async (req, res) => {
-    const users = await User.findAll()
+    const users = await User.findAll({
+        where: null,
+        include: [
+            { model: Tag },
+            { model: Office },
+            { model: Company }
+        ]
+    })
     res.send(users)
+})
+
+app.get('/load', async (req, res) => {
+    const company = await Company.create({ name: 'Microsoft' })
+    company.save()
+    const office = await Office.create({ city: 'Tallin', companyId: company.id })
+    office.save()
+
+    res.send('Ok')
 })
 
 app.post('/users', async (req, res) => {
@@ -24,7 +40,7 @@ app.post('/users', async (req, res) => {
         user.save()
         res.json(user)
     } catch (e) {
-        throw new exception(e)
+        console.log(e)
     }
 })
 

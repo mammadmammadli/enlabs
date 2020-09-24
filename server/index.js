@@ -1,4 +1,5 @@
 const { componentFactoryName } = require('@angular/compiler');
+const cors = require('cors')
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
@@ -8,14 +9,16 @@ const { exception } = require('console');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(cors())
 app.get('/healthcheck', (req, res) => {
     res.send('ok')
 })
 
 app.get('/users', async (req, res) => {
     const users = await User.findAll({
-        where: null,
+        order: [
+            ['id', 'ASC']
+        ],
         include: [
             { model: Tag },
             { model: Office },

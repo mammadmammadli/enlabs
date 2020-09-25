@@ -24,40 +24,6 @@ app.get("/users", async (req, res) => {
   res.send(users);
 });
 
-app.get("/load", async (req, res) => {
-  const company = await Company.create({ name: "Microsoft" });
-  company.save();
-  const office = await Office.create({ city: "Tallin", companyId: company.id });
-  office.save();
-  await Tag.create({ name: "Test tag" });
-  await Tag.create({ name: "Test tag 1" });
-
-  await User.create({
-    firstName: "mammad",
-    lastName: "123456Aa@!",
-    phoneNumber: "+994505396290",
-    birthDate: "1995-12-17T03:24:00",
-    officeId: 1,
-    companyId: 1,
-  });
-
-  await User.create({
-    firstName: "mammad222",
-    lastName: "123456Aa@!asdasda",
-    phoneNumber: "+994505396291",
-    birthDate: "1995-12-17T03:24:00",
-    officeId: 1,
-    companyId: 1,
-  });
-
-  // await UserTag.create({
-  //     userId: 1,
-  //     tagId: 1,
-  // })
-
-  res.send("Ok");
-});
-
 app.post("/users", async (req, res) => {
   try {
     const user = await User.create(req.body);

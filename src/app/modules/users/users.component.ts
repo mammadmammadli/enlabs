@@ -20,7 +20,7 @@ export class UsersComponent implements AfterViewInit, OnInit {
   dataSource: UsersDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'firstName', 'lastName', 'office', 'phoneNumber'];
+  displayedColumns = ['id', 'firstName', 'lastName', 'office', 'phoneNumber', 'tags'];
 
   constructor(
     private userService: UserService,

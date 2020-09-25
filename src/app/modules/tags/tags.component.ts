@@ -32,4 +32,10 @@ export class TagsComponent implements OnInit {
     })
   }
 
+  onClick(id: number) {
+    this.tagService.remove(id).subscribe(() => {
+      this.tags = this.tags.filter(tag => tag.id !== id)
+    })
+  }
+
 }

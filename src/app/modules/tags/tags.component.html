@@ -18,7 +18,7 @@
               {{ tag.name }}
             </div>
             <div>
-              <mat-icon color="warn" matChipRemove>delete</mat-icon>
+              <mat-icon color="warn" (click)="onClick(tag.id)" matChipRemove>delete</mat-icon>
             </div>
           </div>
         </mat-list-option>

@@ -24,4 +24,10 @@ export class TagService {
       data
     )
   }
+
+  remove (id: number): Observable<void> {
+    return this.http.delete<void>(
+      `${this.commonService.baseUrl}/tag/${id}`
+    )
+  }
 }

@@ -14,7 +14,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { SingleUserComponent } from './single-user/single-user.component';
-
 @NgModule({
   declarations: [UsersComponent, SingleUserComponent],
   imports: [

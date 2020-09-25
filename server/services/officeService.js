@@ -1,4 +1,4 @@
-const { Office } = require("../db");
+const { Office, Company } = require("../db");
 
 const OfficeService = {
   addOffice: async (req, res) => {
@@ -10,7 +10,19 @@ const OfficeService = {
     } catch (e) {
       console.log(e);
     }
-    ƒ;
+  },
+  deleteOffice: async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      const office = await Office.destroy({
+        where: { id }
+      });
+
+      res.json('ok')
+    } catch (e) {
+      console.log(e)
+    }
   },
   getOfficeByCompanyId: async (req, res) => {
     try {
@@ -22,6 +34,7 @@ const OfficeService = {
       }
       const offices = await Office.findAll({
         where,
+        include: [{ model: Company }],
       });
 
       res.json(offices);

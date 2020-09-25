@@ -21,9 +21,6 @@ const UserService = {
   },
   getAll: async (_, res) => {
     const users = await User.findAll({
-      attributes: {
-        exclude: ["tag.user_tag"],
-      },
       order: [["id", "ASC"]],
       include: [{ model: Tag }, { model: Office }, { model: Company }],
     });

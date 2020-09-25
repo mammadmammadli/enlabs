@@ -12,6 +12,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/tags/tags.module').then((m) => m.TagsModule),
   },
+  { path: 'offices', loadChildren: () => import('./modules/offices/offices.module').then(m => m.OfficesModule) },
   { path: '**', redirectTo: 'users' },
 ];
 

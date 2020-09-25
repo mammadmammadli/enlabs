@@ -1,0 +1,29 @@
+<div class="offices">
+    <div class="offices__container">
+      <mat-card>
+        <div class="offices__title">
+          <div>
+            <h1>Offices</h1>
+          </div>
+          <div>
+            <button mat-raised-button color="primary">
+              Add new office
+            </button>
+          </div>
+        </div>
+        <mat-selection-list [multiple]="false">
+          <mat-list-option *ngFor="let office of offices">
+            <div class="office">
+              <div class="office__name">
+                {{ office.city }}
+              </div>
+              <div>
+                <mat-icon color="warn" (click)="deleteOffice(office.id)" matChipRemove>delete</mat-icon>
+              </div>
+            </div>
+          </mat-list-option>
+        </mat-selection-list>
+      </mat-card>
+    </div>
+  </div>
+  

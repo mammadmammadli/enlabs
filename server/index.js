@@ -25,6 +25,7 @@ app.delete("/tag/:id", TagService.deleteTag);
 
 app.get('/offices', OfficeService.getOfficeByCompanyId);
 app.post('/offices', OfficeService.addOffice);
+app.delete('/office/:id', OfficeService.deleteOffice);
 
 app.listen(port, () => {
   console.log("Server is running");

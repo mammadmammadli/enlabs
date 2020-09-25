@@ -69,12 +69,6 @@ app.delete("/tag/:id", async (req, res) => {
   } catch (e) {
     console.log(e);
   }
-
-  // try {
-  //     await Tag
-  // } catch (e) {
-  //     console.log(e)
-  // }
 });
 
 app.post("/users/add-tag", async (req, res) => {

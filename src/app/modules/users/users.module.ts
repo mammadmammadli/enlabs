@@ -15,15 +15,24 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { SingleUserComponent } from './single-user/single-user.component';
 import { MatSelectModule } from '@angular/material/select';
+import { NewuserComponent } from './newuser/newuser.component';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
-  declarations: [UsersComponent, SingleUserComponent],
+  declarations: [UsersComponent, SingleUserComponent, NewuserComponent],
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     UsersRoutingModule,
     HttpClientModule,
     MatAutocompleteModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatCardModule,
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
@@ -31,6 +40,11 @@ import { MatSelectModule } from '@angular/material/select';
     MatSortModule,
     MatDialogModule,
     MatIconModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
+  providers: [MatDatepickerModule],
 })
 export class UsersModule {}

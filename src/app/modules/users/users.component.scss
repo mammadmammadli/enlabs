@@ -1,7 +1,27 @@
+.users {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__container {
+    width: 60%;
+  }
+
+  &__name {
+    display: flex;
+    align-items: center;
+  }
+}
+
 .full-width-table {
-    width: 100%;
+  width: 100%;
 }
 
 .row {
-    cursor: pointer;
+  cursor: pointer;
 }

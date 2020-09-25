@@ -20,6 +20,13 @@ export class UserService {
     )
   }
 
+  create (data: Partial<IUser>): Observable<IUser> {
+    return this.httpClient.post<IUser>(
+      `${this.commonService.baseUrl}/users`,
+      data
+    )
+  }
+
   addTag (
     data: {
       tagId: number;

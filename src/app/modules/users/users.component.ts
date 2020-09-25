@@ -7,6 +7,7 @@ import { IUser } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { SingleUserComponent } from './single-user/single-user.component';
 import { UsersDataSource, UsersItem } from '../../modules/users/users-datasource';
+import { NewuserComponent } from './newuser/newuser.component';
 
 @Component({
   selector: 'app-users',
@@ -55,5 +56,16 @@ export class UsersComponent implements AfterViewInit, OnInit {
         this.fetchUsers()
       }
     )
+  }
+
+  openNewuserModal() {
+    const dialog = this.dialog.open(NewuserComponent, {
+      height: '700px',
+      width: '600px',
+    })
+
+    dialog.afterClosed().subscribe(() => {
+      this.fetchUsers()
+    })
   }
 }

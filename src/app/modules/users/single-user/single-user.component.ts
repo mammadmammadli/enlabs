@@ -67,7 +67,6 @@ export class SingleUserComponent implements OnInit {
   }
 
   selectOffice(office: IOffice): void {
-    console.log(office)
     this.userService
       .updateUser(
         {

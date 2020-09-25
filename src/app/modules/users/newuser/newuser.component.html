@@ -1,0 +1,47 @@
+<div class="newuser">
+  <div>
+    <h1>Add new tag</h1>
+  </div>
+  <div class="newuser__form">
+    <form [formGroup]="newuserForm" (submit)="onSubmit()">
+      <mat-form-field class="newuser__form__row">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="First name" formControlName="firstName" />
+      </mat-form-field>
+      <mat-form-field class="newuser__form__row">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Last name" formControlName="lastName" />
+      </mat-form-field>
+      <mat-form-field class="newuser__form__row">
+        <mat-label>Phone number</mat-label>
+        <input
+          matInput
+          placeholder="Phonenumber"
+          formControlName="phoneNumber"
+        />
+      </mat-form-field>
+      <mat-form-field class="newuser__form__row">
+        <mat-label>Choose a date</mat-label>
+        <input formControlName="birthDate" matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="newuser__form__row">
+        <mat-label>Office</mat-label>
+        <mat-select formControlName="officeId">
+          <mat-option *ngFor="let office of offices" [value]="office.id">
+            {{office.city}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-dialog-actions align="end">
+        <button color="primary" mat-stroked-button>
+          <span *ngIf="!isLoading; else loadingBlock">Save</span>
+          <ng-template #loadingBlock>
+            <mat-spinner diameter="24"></mat-spinner>
+          </ng-template>
+        </button>
+      </mat-dialog-actions>
+    </form>
+  </div>
+</div>

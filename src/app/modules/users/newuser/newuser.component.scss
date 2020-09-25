@@ -1,0 +1,28 @@
+.newuser {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  
+    &__form {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+  
+      &__row {
+        padding-bottom: 20px;
+        width: 100%;
+      }
+
+      form {
+        width: 100%;
+  
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 36px;
+        }
+      }
+    }
+  }
+  

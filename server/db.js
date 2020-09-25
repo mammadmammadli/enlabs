@@ -3,13 +3,13 @@ const CompanyModel = require("./models/Company");
 const UserModel = require("./models/User");
 const OfficeModel = require("./models/Office");
 const TagModel = require("./models/Tag");
-const sequelize = new Sequelize("", "", "", {
+const sequelize = new Sequelize("netflix", "postgres", "London7070!", {
   host: "localhost",
   dialect: "postgres",
 });
 
-const Company = CompanyModel(sequelize, Sequelize);
 const User = UserModel(sequelize, Sequelize);
+const Company = CompanyModel(sequelize, Sequelize);
 const Office = OfficeModel(sequelize, Sequelize);
 const Tag = TagModel(sequelize, Sequelize);
 const UserTag = sequelize.define("user_tag", {});
@@ -34,7 +34,7 @@ async function mockData() {
     });
     office.save();
 
-    await User.create({
+    const user = await User.create({
       firstName: "Mammad",
       lastName: "Mammadli",
       phoneNumber: "+994505396290",
@@ -42,12 +42,14 @@ async function mockData() {
       officeId: 1,
       companyId: 1,
     });
+    
+    user.save()
   } catch (e) {
     console.log(e);
   }
 }
 
-mockData();
+// mockData();
 
 module.exports = {
   Company,

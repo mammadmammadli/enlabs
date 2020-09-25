@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const port = 4300;
 const UserService = require("./services/userService");
 const TagService = require("./services/tagService");
+const OfficeService = require("./services/officeService");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -21,6 +22,9 @@ app.post("/users/remove-tag", UserService.removeTag);
 app.get("/tags", TagService.getAll);
 app.post("/tags", TagService.addTag);
 app.delete("/tag/:id", TagService.deleteTag);
+
+app.get('/offices', OfficeService.getOfficeByCompanyId);
+app.post('/offices', OfficeService.addOffice);
 
 app.listen(port, () => {
   console.log("Server is running");

@@ -19,4 +19,26 @@ export class UserService {
       `${this.commonService.baseUrl}/users`
     )
   }
+
+  addTag (
+    data: {
+      tagId: number;
+      userId: number 
+    }
+  ) {
+    return this.httpClient.post(
+      `${this.commonService.baseUrl}/users/add-tag`,
+      data
+    )
+  }
+
+  removeTag (data: {
+    tagId: number;
+    userId: number 
+  }) {
+    return this.httpClient.post(
+      `${this.commonService.baseUrl}/users/remove-tag`,
+      data
+    )
+  }
 }

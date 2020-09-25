@@ -1,9 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { IUser } from '../models/user';
 import { UserService } from '../services/user.service';
+import { SingleUserComponent } from './single-user/single-user.component';
 import { UsersDataSource, UsersItem } from './users-datasource';
 
 @Component({
@@ -20,7 +22,10 @@ export class UsersComponent implements AfterViewInit, OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'firstName', 'lastName', 'office', 'phoneNumber'];
 
-  constructor (private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit() {
     this.dataSource = new UsersDataSource();
@@ -30,11 +35,15 @@ export class UsersComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    // this.dataSource.sort = this.sort;
+    this.dataSource.sort = this.sort;
     this.table.dataSource = this.dataSource;
   }
 
-  onClick (row) {
-    console.log(row)
+  onClick(user) {
+    const dialogRef = this.dialog.open(SingleUserComponent, {
+      height: '700px',
+      width: '600px',
+      data: user
+    })
   }
 }

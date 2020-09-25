@@ -23,7 +23,7 @@ Office.belongsTo(Company)
 User.belongsTo(Office)
 User.belongsTo(Company)
 User.belongsToMany(Tag, { through: UserTag, unique: false })
-Tag.belongsToMany(User, { through: UserTag, unique: false })
+// Tag.belongsToMany(User, { through: UserTag, unique: false })
 
 sequelize.sync({ force: true })
     .then(() => {
@@ -35,4 +35,5 @@ module.exports = {
     Office,
     User,
     Tag,
+    UserTag
 }

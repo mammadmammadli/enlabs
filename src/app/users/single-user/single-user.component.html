@@ -1,0 +1,49 @@
+<div class="modal">
+    <h2 mat-dialog-title>User info</h2>
+    <mat-dialog-content class="mat-typography">
+        <div class="modal__content">
+            <div class="modal__content__row">
+                <div>First name:</div>
+                <div>{{user.firstName}}</div>
+            </div>
+            <div class="modal__content__row">
+                <div>Last name:</div>
+                <div>{{user.lastName}}</div>
+            </div>
+            <div class="modal__content__row">
+                <div>Office:</div>
+                <div>{{user.office.city}}</div>
+            </div>
+            <div class="modal__content__row">
+                <div>Company:</div>
+                <div>{{user.company.name}}</div>
+            </div>
+            <div class="modal__content__row">
+                <div>Phone number:</div>
+                <div>{{user.phoneNumber}}</div>
+            </div>
+            <div class="modal__content__row tags">
+                <mat-form-field class="modal__content__row__field">
+                    <mat-chip-list #chipList>
+                        <mat-chip *ngFor="let tag of user.tags" [removable]="true" (removed)="remove(tag)">
+                            {{tag.name}}
+                            <mat-icon matChipRemove>cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Tags" [matChipInputFor]="chipList" [matAutocomplete]="auto">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                        <mat-option *ngFor="let tag of tags" value="{{tag.id}}">
+                            {{tag.name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <div class="modal__actions">
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+        </mat-dialog-actions>
+    </div>
+</div>

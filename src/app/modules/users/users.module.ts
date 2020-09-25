@@ -28,7 +28,6 @@ import { SingleUserComponent } from './single-user/single-user.component';
     MatChipsModule,
     MatSortModule,
     MatDialogModule,
-    MatFormFieldModule,
     MatIconModule,
   ]
 })

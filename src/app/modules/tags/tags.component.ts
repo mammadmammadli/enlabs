@@ -28,7 +28,9 @@ export class TagsComponent implements OnInit {
     })
 
     newTagRef.afterClosed().subscribe((data: ITag) => {
-      this.tags.push(data)
+      if (data) {
+        this.tags.push(data)
+      }
     })
   }
 

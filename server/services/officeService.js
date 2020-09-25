@@ -3,7 +3,7 @@ const { Office, Company } = require("../db");
 const OfficeService = {
   addOffice: async (req, res) => {
     try {
-      const office = await Office.create(req);
+      const office = await Office.create(req.body);
       office.save();
 
       res.json(office);
@@ -15,7 +15,7 @@ const OfficeService = {
     const { id } = req.params;
 
     try {
-      const office = await Office.destroy({
+      await Office.destroy({
         where: { id }
       });
 

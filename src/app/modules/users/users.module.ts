@@ -14,6 +14,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { SingleUserComponent } from './single-user/single-user.component';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [UsersComponent, SingleUserComponent],
   imports: [
@@ -22,6 +23,7 @@ import { SingleUserComponent } from './single-user/single-user.component';
     HttpClientModule,
     MatAutocompleteModule,
     MatFormFieldModule,
+    MatSelectModule,
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
@@ -29,6 +31,6 @@ import { SingleUserComponent } from './single-user/single-user.component';
     MatSortModule,
     MatDialogModule,
     MatIconModule,
-  ]
+  ],
 })
-export class UsersModule { }
+export class UsersModule {}

@@ -41,4 +41,11 @@ export class UserService {
       data
     )
   }
+
+  updateUser (data: Partial<IUser>, id: number): Observable<IUser> {
+    return this.httpClient.put<IUser>(
+      `${this.commonService.baseUrl}/user/${id}`,
+      data
+    )
+  }
 }

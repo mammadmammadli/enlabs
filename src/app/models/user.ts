@@ -9,6 +9,7 @@ export interface IUser extends IDate {
     firstName: string;
     lastName: string;
     tags: ITag[];
+    officeId: number;
     office: IOffice;
     phoneNumber: string;
 }

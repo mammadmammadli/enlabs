@@ -29,6 +29,10 @@ export class UsersComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.dataSource = new UsersDataSource();
+    this.fetchUsers()
+  }
+
+  fetchUsers (): void {
     this.userService.getAll().subscribe(data => {
       this.table.dataSource = data;
     })
@@ -45,5 +49,11 @@ export class UsersComponent implements AfterViewInit, OnInit {
       width: '600px',
       data: user
     })
+
+    dialogRef.afterClosed().subscribe(
+      () => {
+        this.fetchUsers()
+      }
+    )
   }
 }

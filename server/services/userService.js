@@ -28,11 +28,29 @@ const UserService = {
   },
   removeTag: async (req, res) => {
     try {
+      UserTag.findOne({
+        where,
+      });
       await UserTag.destroy({
         where: req.body,
       });
 
       res.json("ok");
+    } catch (e) {
+      console.log(e);
+    }
+  },
+  updateUser: async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      await User.update(req.body, { where: { id } });
+      const user = await User.findOne({
+        where: { id },
+        include: [{ model: Tag }, { model: Office }, { model: Company }]
+      });
+
+      res.json(user);
     } catch (e) {
       console.log(e);
     }

@@ -3,7 +3,7 @@ const CompanyModel = require("./models/Company");
 const UserModel = require("./models/User");
 const OfficeModel = require("./models/Office");
 const TagModel = require("./models/Tag");
-const sequelize = new Sequelize("netflix", "postgres", "London7070!", {
+const sequelize = new Sequelize("", "", "", {
   host: "localhost",
   dialect: "postgres",
 });

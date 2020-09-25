@@ -32,9 +32,11 @@
                         <input placeholder="Tags" [matChipInputFor]="chipList" [matAutocomplete]="auto">
                     </mat-chip-list>
                     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                        <mat-option *ngFor="let tag of tags" value="{{tag.id}}">
-                            {{tag.name}}
-                        </mat-option>
+                        <ng-container *ngFor="let tag of tags">
+                            <mat-option *ngIf="!isUserHasTag(tag.id)" value="{{tag.id}}">
+                                {{tag.name}}
+                            </mat-option>
+                        </ng-container>
                     </mat-autocomplete>
                 </mat-form-field>
             </div>
@@ -42,8 +44,7 @@
     </mat-dialog-content>
     <div class="modal__actions">
         <mat-dialog-actions align="end">
-            <button mat-button mat-dialog-close>Cancel</button>
-            <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+            <button color="primary" mat-button mat-dialog-close cdkFocusInitial>Close</button>
         </mat-dialog-actions>
     </div>
 </div>

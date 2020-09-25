@@ -47,10 +47,11 @@ app.get('/load', async (req, res) => {
         "companyId": 1
     })
 
-    await UserTag.create({
-        userId: 1,
-        tagId: 1,
-    })
+    // await UserTag.create({
+    //     userId: 1,
+    //     tagId: 1,
+    // })
+    
 
     res.send('Ok')
 })
@@ -69,6 +70,16 @@ app.get('/tags', async (req, res) => {
     const tags = await Tag.findAll()
 
     res.json(tags)
+})
+
+app.post('/tags', async (req, res) => {
+    try {
+        const tag = await Tag.create(req.body)
+
+        res.json(tag)
+    } catch (e) {
+        console.log(e)
+    }
 })
 
 app.post('/users/add-tag', async (req, res) => {

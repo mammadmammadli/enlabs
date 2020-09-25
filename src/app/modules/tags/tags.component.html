@@ -1,0 +1,28 @@
+<div class="tags">
+  <div class="tags__container">
+    <mat-card>
+      <div class="tags__title">
+        <div>
+          <h1>Tags</h1>
+        </div>
+        <div>
+          <button mat-raised-button color="primary" (click)="openNewTag()">
+            Add new tag
+          </button>
+        </div>
+      </div>
+      <mat-selection-list [multiple]="false">
+        <mat-list-option *ngFor="let tag of tags">
+          <div class="tag">
+            <div class="tag__name">
+              {{ tag.name }}
+            </div>
+            <div>
+              <mat-icon color="warn" matChipRemove>delete</mat-icon>
+            </div>
+          </div>
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-card>
+  </div>
+</div>

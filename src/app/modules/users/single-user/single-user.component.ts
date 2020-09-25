@@ -23,22 +23,21 @@ export class SingleUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.tagService.getAll().subscribe(tags => {
-      this.tags = tags.filter(tag => {
-        if (!this.user.tags.find(userTag => userTag.id === tag.id)) {
-          return tag;
-        }
-      })
+      this.tags = tags
     })
+  }
+
+  isUserHasTag (tagId: number): boolean {
+    if (this.user.tags.find(tag => tag.id === tagId)) return true
+    return false
   }
 
   remove(tag: ITag) {
     this.userService.removeTag({
       tagId: tag.id,
       userId: this.user.id
-    }).subscribe(observer => {
-      console.log(observer)
+    }).subscribe(() => {
       this.user.tags = this.user.tags.filter(_tag => _tag.id != tag.id)
-      this.tags = this.tags.filter(tag => tag.id != tag.id)
     })
   }
 
@@ -48,10 +47,8 @@ export class SingleUserComponent implements OnInit {
     this.userService.addTag({
       tagId,
       userId: this.user.id
-    }).subscribe(observer => {
-      console.log(observer)
+    }).subscribe(() => {
       this.user.tags.push(this.tags.find(tag => tag.id == parseInt(tagId)))
-      this.tags = this.tags.filter(tag => tag.id != tagId)
     })
   }
 }

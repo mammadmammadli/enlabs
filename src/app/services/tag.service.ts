@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ITag } from '../models/tag';
+import { IDate } from '../models/common';
+import { ITag, ITagRq } from '../models/tag';
 import { CommonService } from './common.service';
 
 @Injectable({
@@ -14,6 +15,13 @@ export class TagService {
   getAll (): Observable<ITag[]> {
     return this.http.get<ITag[]>(
       `${this.commonService.baseUrl}/tags`
+    )
+  }
+
+  add (data: ITagRq): Observable<ITagRq & IDate> {
+    return this.http.post<ITagRq & IDate>(
+      `${this.commonService.baseUrl}/tags`,
+      data
     )
   }
 }

@@ -3,10 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { IUser } from '../models/user';
-import { UserService } from '../services/user.service';
+import { IUser } from '../../models/user';
+import { UserService } from '../../services/user.service';
 import { SingleUserComponent } from './single-user/single-user.component';
-import { UsersDataSource, UsersItem } from './users-datasource';
+import { UsersDataSource, UsersItem } from '../../modules/users/users-datasource';
 
 @Component({
   selector: 'app-users',

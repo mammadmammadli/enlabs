@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { IUser } from '../models/user';
+import { IUser } from '../../models/user';
 
 // TODO: Replace this with your own data model type
 export interface UsersItem {
@@ -47,7 +47,7 @@ export class UsersDataSource extends DataSource<IUser> {
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect() {}
+  disconnect() { }
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,

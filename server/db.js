@@ -3,7 +3,7 @@ const CompanyModel = require("./models/Company");
 const UserModel = require("./models/User");
 const OfficeModel = require("./models/Office");
 const TagModel = require("./models/Tag");
-const sequelize = new Sequelize("netflix", "postgres", "London7070!", {
+const sequelize = new Sequelize("", "", "", {
   host: "localhost",
   dialect: "postgres",
 });
@@ -20,7 +20,9 @@ User.belongsTo(Company);
 User.belongsToMany(Tag, { through: UserTag, unique: false });
 Tag.belongsToMany(User, { through: UserTag, unique: false });
 
-sequelize.sync().then(() => {
+sequelize.sync({ force: true }).then(() => {
+  mockData();
+
   console.log(`Database & tables created!`);
 });
 
@@ -28,28 +30,10 @@ async function mockData() {
   try {
     const company = await Company.create({ name: "Enlabs" });
     company.save();
-    const office = await Office.create({
-      city: "Tallin",
-      companyId: company.id,
-    });
-    office.save();
-
-    const user = await User.create({
-      firstName: "Mammad",
-      lastName: "Mammadli",
-      phoneNumber: "+994505396290",
-      birthDate: "1997-12-24T03:24:00",
-      officeId: 1,
-      companyId: 1,
-    });
-    
-    user.save()
   } catch (e) {
     console.log(e);
   }
 }
-
-// mockData();
 
 module.exports = {
   Company,

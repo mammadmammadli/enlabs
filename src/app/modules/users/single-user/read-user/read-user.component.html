@@ -23,6 +23,10 @@
         <div>{{ user.phoneNumber }}</div>
       </div>
       <div class="modal__content__row">
+        <div>Birthdate:</div>
+        <div>{{ user.birthDate | date: 'dd/MM/yyyy'}}</div>
+      </div>
+      <div class="modal__content__row">
         <div>Office:</div>
         <div>{{ user.office?.city }}</div>
       </div>

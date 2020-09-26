@@ -6,13 +6,16 @@ import { MatTable } from '@angular/material/table';
 import { IUser } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { SingleUserComponent } from './single-user/single-user.component';
-import { UsersDataSource, UsersItem } from '../../modules/users/users-datasource';
+import {
+  UsersDataSource,
+  UsersItem,
+} from '../../modules/users/users-datasource';
 import { NewuserComponent } from './newuser/newuser.component';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -21,22 +24,27 @@ export class UsersComponent implements AfterViewInit, OnInit {
   dataSource: UsersDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'firstName', 'lastName', 'office', 'phoneNumber', 'tags'];
+  displayedColumns = [
+    'id',
+    'firstName',
+    'lastName',
+    'office',
+    'phoneNumber',
+    'tags',
+    'actions',
+  ];
 
-  constructor(
-    private userService: UserService,
-    public dialog: MatDialog
-  ) { }
+  constructor(private userService: UserService, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.dataSource = new UsersDataSource();
-    this.fetchUsers()
+    this.fetchUsers();
   }
 
-  fetchUsers (): void {
-    this.userService.getAll().subscribe(data => {
+  fetchUsers(): void {
+    this.userService.getAll().subscribe((data) => {
       this.table.dataSource = data;
-    })
+    });
   }
 
   ngAfterViewInit() {
@@ -44,28 +52,33 @@ export class UsersComponent implements AfterViewInit, OnInit {
     this.table.dataSource = this.dataSource;
   }
 
-  onClick(user) {
+  onClick(user: IUser) {
     const dialogRef = this.dialog.open(SingleUserComponent, {
       height: '700px',
       width: '600px',
-      data: user
-    })
+      data: user,
+    });
 
-    dialogRef.afterClosed().subscribe(
-      () => {
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchUsers();
+    });
+  }
+
+  onDelete (id: number) {
+    this.userService.deleteUser(id)
+      .subscribe(() => {
         this.fetchUsers()
-      }
-    )
+      })
   }
 
   openNewuserModal() {
     const dialog = this.dialog.open(NewuserComponent, {
       height: '700px',
       width: '600px',
-    })
+    });
 
     dialog.afterClosed().subscribe(() => {
-      this.fetchUsers()
-    })
+      this.fetchUsers();
+    });
   }
 }

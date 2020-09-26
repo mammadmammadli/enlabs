@@ -55,4 +55,10 @@ export class UserService {
       data
     )
   }
+
+  deleteUser (id: number): Observable<void> {
+    return this.httpClient.delete<void>(
+      `${this.commonService.baseUrl}/user/${id}`,
+    )
+  }
 }

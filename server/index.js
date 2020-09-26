@@ -19,6 +19,7 @@ app.post("/users", UserService.addUser);
 app.post("/users/add-tag", UserService.addTag);
 app.post("/users/remove-tag", UserService.removeTag);
 app.put("/user/:id", UserService.updateUser);
+app.delete('/user/:id', UserService.deleteUser)
 
 app.get("/tags", TagService.getAll);
 app.post("/tags", TagService.addTag);

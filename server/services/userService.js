@@ -19,6 +19,18 @@ const UserService = {
       console.log(e);
     }
   },
+  deleteUser: async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      await User.destroy({
+        where: { id },
+      });
+      res.json('Ok');
+    } catch (e) {
+      console.log(e);
+    }
+  },
   getAll: async (_, res) => {
     const users = await User.findAll({
       order: [["id", "ASC"]],
@@ -44,7 +56,7 @@ const UserService = {
       await User.update(req.body, { where: { id } });
       const user = await User.findOne({
         where: { id },
-        include: [{ model: Tag }, { model: Office }, { model: Company }]
+        include: [{ model: Tag }, { model: Office }, { model: Company }],
       });
 
       res.json(user);

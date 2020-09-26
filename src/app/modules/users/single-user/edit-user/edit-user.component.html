@@ -130,7 +130,7 @@
         <button mat-button color="primary" (click)="handleOpenRead()">
           Read
         </button>
-        <button mat-raised-button color="primary">
+        <button type="submit" mat-raised-button color="primary">
           <span *ngIf="!isLoading; else loadingBlock">Save</span>
           <ng-template #loadingBlock>
             <mat-spinner diameter="24"></mat-spinner>

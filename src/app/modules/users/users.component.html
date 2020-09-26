@@ -6,7 +6,11 @@
           <h1>Users</h1>
         </div>
         <div>
-          <button mat-raised-button color="primary" (click)="openNewuserModal()">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="openNewuserModal()"
+          >
             Add new user
           </button>
         </div>
@@ -50,13 +54,20 @@
             </td>
           </ng-container>
 
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let row" class="actions">
+              <button mat-mini-fab color="primary" (click)="onClick(row)">
+                <mat-icon>info</mat-icon>
+              </button>
+              <button mat-mini-fab color="warn" (click)="onDelete(row.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr
-            class="row"
-            mat-row
-            *matRowDef="let row; columns: displayedColumns"
-            (click)="onClick(row)"
-          ></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
       </div>
     </mat-card>

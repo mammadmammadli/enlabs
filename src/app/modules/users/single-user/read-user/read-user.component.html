@@ -1,0 +1,57 @@
+<div class="modal">
+  <div class="modal__title">
+    <div>
+      <h2 mat-dialog-title>User info</h2>
+    </div>
+  </div>
+  <mat-dialog-content class="mat-typography">
+    <div class="modal__content">
+      <div class="modal__content__row">
+        <div>First name:</div>
+        <div>{{ user.firstName }}</div>
+      </div>
+      <div class="modal__content__row">
+        <div>Last name:</div>
+        <div>{{ user.lastName }}</div>
+      </div>
+      <div class="modal__content__row">
+        <div>Company:</div>
+        <div>{{ user.company.name }}</div>
+      </div>
+      <div class="modal__content__row">
+        <div>Phone number:</div>
+        <div>{{ user.phoneNumber }}</div>
+      </div>
+      <div class="modal__content__row">
+        <div>Office:</div>
+        <div>{{ user.office?.city }}</div>
+      </div>
+      <div class="modal__content__row">
+        <div>Tags:</div>
+        <div>
+          <mat-chip-list>
+            <mat-chip *ngFor="let tag of user.tags">{{ tag.name }}</mat-chip>
+          </mat-chip-list>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <div class="modal__actions">
+    <mat-dialog-actions align="end">
+      <button
+        color="primary"
+        mat-stroked-button
+        mat-dialog-close
+      >
+        Close
+      </button>
+      <button
+        color="primary"
+        mat-raised-button
+        (click)="handleOpenEdit()"
+      >
+        Edit user
+      </button>
+    </mat-dialog-actions>
+  </div>
+</div>

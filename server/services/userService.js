@@ -28,9 +28,6 @@ const UserService = {
   },
   removeTag: async (req, res) => {
     try {
-      UserTag.findOne({
-        where,
-      });
       await UserTag.destroy({
         where: req.body,
       });

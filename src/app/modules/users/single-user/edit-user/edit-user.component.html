@@ -1,0 +1,142 @@
+<div class="modal">
+  <form [formGroup]="editUserForm" (submit)="handleSubmit()">
+    <div class="modal__title">
+      <div>
+        <h2 mat-dialog-title>Edit user</h2>
+      </div>
+    </div>
+    <mat-dialog-content class="modal mat-typography">
+      <div class="modal__content">
+        <div class="modal__content__row">
+          <div>First name:</div>
+          <div>
+            <mat-form-field class="full-width">
+              <mat-label>First name</mat-label>
+              <input
+                matInput
+                placeholder="First name"
+                formControlName="firstName"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="modal__content__row">
+          <div>Last name:</div>
+          <div>
+            <mat-form-field class="full-width">
+              <mat-label>Last name</mat-label>
+              <input
+                matInput
+                placeholder="Last name"
+                formControlName="lastName"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="modal__content__row">
+          <div>Company:</div>
+          <div>
+            <mat-form-field class="full-width">
+              <input matInput [value]="user.company.name" disabled />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="modal__content__row">
+          <div>Phone number:</div>
+          <div>
+            <mat-form-field class="full-width">
+              <mat-label>Name</mat-label>
+              <input
+                matInput
+                placeholder="Phone number"
+                formControlName="phoneNumber"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="modal__content__row">
+          <div>Date:</div>
+          <div>
+            <mat-form-field class="newuser__form__row">
+              <mat-label>Choose a date</mat-label>
+              <input
+                formControlName="birthDate"
+                matInput
+                [matDatepicker]="picker"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="modal__content__row">
+          <div>Office:</div>
+          <div>
+            <mat-form-field class="form-field">
+              <mat-select formControlName="officeId" [value]="user.officeId">
+                <ng-container *ngFor="let office of offices">
+                  <mat-option [value]="office.id">
+                    {{ office.city }}
+                  </mat-option>
+                </ng-container>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="modal__content__row tags">
+          <mat-form-field class="modal__content__row__field">
+            <mat-chip-list #chipList>
+              <mat-chip
+                *ngFor="let tag of user.tags"
+                [removable]="true"
+                (removed)="remove(tag)"
+              >
+                {{ tag.name }}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="Tags"
+                [matChipInputFor]="chipList"
+                [matAutocomplete]="auto"
+              />
+            </mat-chip-list>
+            <mat-autocomplete
+              #auto="matAutocomplete"
+              (optionSelected)="selected($event)"
+            >
+              <ng-container *ngFor="let tag of tags">
+                <mat-option *ngIf="!isUserHasTag(tag.id)" value="{{ tag.id }}">
+                  {{ tag.name }}
+                </mat-option>
+              </ng-container>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-dialog-content>
+    <div class="modal__actions">
+      <mat-dialog-actions align="end">
+        <button
+          color="primary"
+          mat-stroked-button
+          mat-dialog-close
+          cdkFocusInitial
+        >
+          Close
+        </button>
+        <button mat-button color="primary" (click)="handleOpenRead()">
+          Read
+        </button>
+        <button mat-raised-button color="primary">
+          <span *ngIf="!isLoading; else loadingBlock">Save</span>
+          <ng-template #loadingBlock>
+            <mat-spinner diameter="24"></mat-spinner>
+          </ng-template>
+        </button>
+      </mat-dialog-actions>
+    </div>
+  </form>
+</div>

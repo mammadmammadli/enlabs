@@ -1,75 +1,11 @@
-<div class="modal">
-  <h2 mat-dialog-title>User info</h2>
-  <mat-dialog-content class="mat-typography">
-    <div class="modal__content">
-      <div class="modal__content__row">
-        <div>First name:</div>
-        <div>{{ user.firstName }}</div>
-      </div>
-      <div class="modal__content__row">
-        <div>Last name:</div>
-        <div>{{ user.lastName }}</div>
-      </div>
-      <div class="modal__content__row">
-        <div>Company:</div>
-        <div>{{ user.company.name }}</div>
-      </div>
-      <div class="modal__content__row">
-        <div>Phone number:</div>
-        <div>{{ user.phoneNumber }}</div>
-      </div>
-      <div class="modal__content__row">
-        <div>Office:</div>
-        <div>
-          <mat-form-field class="form-field">
-            <mat-select [value]="user.officeId">
-              <ng-container *ngFor="let office of offices">
-                <mat-option
-                  [value]="office.id"
-                  (click)="selectOffice(office)"
-                  >{{ office.city }}</mat-option
-                >
-              </ng-container>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="modal__content__row tags">
-        <mat-form-field class="modal__content__row__field">
-          <mat-chip-list #chipList>
-            <mat-chip
-              *ngFor="let tag of user.tags"
-              [removable]="true"
-              (removed)="remove(tag)"
-            >
-              {{ tag.name }}
-              <mat-icon matChipRemove>cancel</mat-icon>
-            </mat-chip>
-            <input
-              placeholder="Tags"
-              [matChipInputFor]="chipList"
-              [matAutocomplete]="auto"
-            />
-          </mat-chip-list>
-          <mat-autocomplete
-            #auto="matAutocomplete"
-            (optionSelected)="selected($event)"
-          >
-            <ng-container *ngFor="let tag of tags">
-              <mat-option *ngIf="!isUserHasTag(tag.id)" value="{{ tag.id }}">
-                {{ tag.name }}
-              </mat-option>
-            </ng-container>
-          </mat-autocomplete>
-        </mat-form-field>
-      </div>
-    </div>
-  </mat-dialog-content>
-  <div class="modal__actions">
-    <mat-dialog-actions align="end">
-      <button color="primary" mat-button mat-dialog-close cdkFocusInitial>
-        Close
-      </button>
-    </mat-dialog-actions>
-  </div>
-</div>
+<app-read-user
+  [user]="user"
+  *ngIf="!editMode; else readModeContent"
+  (toggleEditMode)="toggleEditMode($event)"
+></app-read-user>
+<ng-template #readModeContent>
+  <app-edit-user
+    [user]="user"
+    (toggleEditMode)="toggleEditMode($event)"
+  ></app-edit-user>
+</ng-template>

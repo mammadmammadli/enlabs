@@ -22,8 +22,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { EditUserComponent } from './single-user/edit-user/edit-user.component';
+import { ReadUserComponent } from './single-user/read-user/read-user.component';
 @NgModule({
-  declarations: [UsersComponent, SingleUserComponent, NewuserComponent],
+  declarations: [UsersComponent, SingleUserComponent, NewuserComponent, EditUserComponent, ReadUserComponent],
   imports: [
     ReactiveFormsModule,
     CommonModule,
